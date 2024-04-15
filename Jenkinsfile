@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Push Docker Image') {
         steps {
-                sh 'docker push your-registry/your-image-name'
+                sh 'echo docker push your-registry/your-image-name'
             }
         }
     }
