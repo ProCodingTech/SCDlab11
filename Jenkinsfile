@@ -5,7 +5,7 @@ pipeline {
     stages {
          stage('Checkout') {
             steps {
-                git 'https://github.com/ProCodingTech/SCDlab11.git'
+                sh 'echo CheckOut Passed'
             }
         }
         stage('Dependency Installation') {
@@ -13,14 +13,19 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Build Docker Image') {
-        steps {
-                sh 'echo docker build -t your-image-name .'
+        stage('Start') {
+            steps {
+                sh 'npm start'
             }
         }
-        stage('Push Docker Image') {
+        stage('Build Docker Image') {
         steps {
-                sh 'echo docker push your-registry/your-image-name'
+                sh 'echo docker build -t SCDlab11'
+            }
+        }
+        stage('Docker Comopse Up') {
+            steps {
+                    sh "docker compose up"
             }
         }
     }
