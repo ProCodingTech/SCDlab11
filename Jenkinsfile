@@ -13,19 +13,19 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Start') {
-            steps {
-                sh 'npm start'
-            }
-        }
         stage('Build Docker Image') {
         steps {
                 sh 'echo docker build -t SCDlab11'
             }
         }
-        stage('Docker Comopse Up') {
+        stage('Run Docker Image') {
+        steps {
+                sh 'echo docker_run_-d_-p_80:80_myapp:latest'
+            }
+        }
+        stage('Push Docker Image') {
             steps {
-                    sh "docker compose up"
+                    sh "echo docker push abdulrehman/SCDLab11:latest"
             }
         }
     }
