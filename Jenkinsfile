@@ -3,33 +3,24 @@ pipeline {
     agent any
     
     stages {
-         stage('install') {
-          steps {
-              sh 'npm install'
-            }
-          }
-          stage('start') {
-          steps {
-              sh 'npm start'
-            }
-          }
-        
-        stage('test') {
-          steps {
-              sh 'npm test'
-            }
-          }
-          stage('Docker Image') {
-          steps {
-              sh 'docker build -t SCDLABTASK'
-            }
-          }
-        
-        stage('Docker Comopse Up') {
+         stage('Checkout') {
             steps {
-               
-                    sh "docker compose up"
-                
+                git 'https://github.com/ProCodingTech/SCDlab11.git'
+            }
+        }
+        stage('Dependency Installation') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Build Docker Image') {
+        steps {
+                sh 'echo docker build -t your-image-name .'
+            }
+        }
+        stage('Push Docker Image') {
+        steps {
+                sh 'docker push your-registry/your-image-name'
             }
         }
     }
